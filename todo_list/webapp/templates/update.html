@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block title %}Update task{% endblock %}
+
+{% block content %}
+
+    <form action="{% url 'update' task.pk %}" method="post">
+       {% include 'form.html' %}
+    </form>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% csrf_token %}
+    <p>
+        <label for="task_name">Имя:</label><br>
+        <input type="text" name="name" id="task_name" required value="{{ task.name }}">
+    </p>
+     <p>
+         <label for="task_description">Описание:</label><br>
+         <textarea name="description" id="task_description">{{ task.description }}</textarea>
+     </p>
+
+    <p>
+        <label for="task_status">Статус:</label><br>
+        <select name="status" id="task_status">
+            <option value="new" {% if task.status == 'new' %} selected {% endif %}>new</option>
+            <option value="in progress" {% if task.status == 'in progress' %} selected {% endif %}>in progress</option>
+            <option value="done" {% if task.status == 'done' %} selected {% endif %}>done</option>
+        </select>
+    </p>
+
+    <p>
+        <input type="submit" value="Сохранить" class="submit">
+    </p>

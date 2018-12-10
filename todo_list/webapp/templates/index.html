@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}To-do list{% endblock %}
+
+{% block content %}
+    <table>
+        <thead>
+            <tr>
+                <th>Задача</th>
+                <th>Cтатус</th>
+                <th colspan="3">Действия</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in tasks %}
+                <tr>
+                    <td>{{ task.name }}</td>
+                    <td>{% if task.status == 'new' %}Новая{% elif task.status == 'in progress' %}В процессе{% elif task.status == 'done' %}Готовая{% endif %}</td>
+                    <td><p><a href="{% url 'task_view' task.pk %}">Подробнее</a></p></td>
+                    <td><a href = "{% url 'update' task.pk %}">Редактировать</a></td>
+                    <td><a href = "{% url 'delete' task.pk %}">Удалить</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <button class="submit"><a href = "{% url 'delete_done' %}">Удалить выполненные</a></button>
+
+
+    <h2>Добавить новую задачу:</h2>
+    <form action="{% url 'create' %}" method="post">
+        {% csrf_token %}
+        {% include 'form.html' %}
+
+    </form>
+{% endblock %}
+

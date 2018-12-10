@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Delete done{% endblock %}
+
+{% block content %}
+    <form action="{% url 'delete_done' %}" method="post">
+        {% csrf_token %}
+        <label>Вы уверены?</label><br>
+        <input type="radio" value="yes" name="delete" id="yes" class="radio">
+        <label for="yes">Да</label> <br>
+        <input type="radio" value="no" checked name="delete" id="no" class="radio">
+        <label for="no">Нет</label>
+        <br>
+        <input class="submit" type="submit" value="ПОДТВЕРДИТЬ">
+    </form>
+{% endblock %}
